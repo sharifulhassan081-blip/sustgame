@@ -28,7 +28,6 @@ function resize() {
   canvas.height = Math.round(H * DPR);
   ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
   computeLayout();
-  if (worldBuilt) buildWorld();
 }
 function computeLayout() {
   L.skyY        = H * 0.46;
@@ -807,4 +806,5 @@ bindBtn('btnHorn',  () => honk());
 
 /* ----------------------------- boot --------------------------------- */
 resize();
+buildWorld();          // build the static world once so the menu can render
 requestAnimationFrame(loop);
