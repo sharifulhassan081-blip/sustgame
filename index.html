@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>সিলেট BRTC বাস সিমুলেটর | Sylhet BRTC Bus Simulator</title>
+<meta name="description" content="SUST থেকে মদিনা মার্কেট পর্যন্ত BRTC ডাবল ডেকার বাস চালান। সিলেটের রাস্তা, রিকশা, CNG আর ছাত্রছাত্রী — সবই এখানে।" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="game-wrap">
+  <canvas id="game"></canvas>
+
+  <!-- START SCREEN -->
+  <div id="startScreen" class="overlay">
+    <div class="panel">
+      <div class="badge">BRTC · ডাবল ডেকার</div>
+      <h1>সিলেট BRTC বাস সিমুলেটর</h1>
+      <p class="sub">Sylhet BRTC Bus Simulator — SUST ➜ Madina Market</p>
+      <div class="route-chips">
+        <span>SUST</span><span>টিলাগড়</span><span>Mount Adora</span><span>Shwapno</span>
+        <span>Zindabazar</span><span>Ambarkhana</span><span>Bondor Bazar</span><span>Madina Market</span>
+      </div>
+      <ul class="howto">
+        <li><b>→ / D</b> — গ্যাস দিন (Accelerate)</li>
+        <li><b>← / A</b> — ব্রেক / পিছুন (Brake)</li>
+        <li><b>স্পেস</b> — বাসের দরজা খুলুন, ছাত্রছাত্রী উঠবে (Door / Board)</li>
+        <li><b>H / ↑</b> — হর্ন (Horn) &nbsp;·&nbsp; <b>P</b> — বিরতি (Pause)</li>
+      </ul>
+      <p class="fare">প্রতি যাত্রীর ভাড়া মাত্র <b>৫ টাকা</b> — বাস স্টপে দাঁড়িয়ে দরজা খুলে টাকা আয় করুন!</p>
+      <button class="btn primary" onclick="startGame()">🚍 গাড়ি চালু করুন (Start Driving)</button>
+      <p class="credit">রাস্তায় রিকশা ও CNG-এর নিচে দুর্ঘটনা এড়াতে গতি সামলান।</p>
+    </div>
+  </div>
+
+  <!-- PAUSE SCREEN -->
+  <div id="pauseScreen" class="overlay hidden">
+    <div class="panel">
+      <h2>⏸ বিরতি (Paused)</h2>
+      <button class="btn primary" onclick="resumeGame()">▶ চালিয়ে যান (Resume)</button>
+      <button class="btn" onclick="restartGame()">↻ আবার শুরু (Restart)</button>
+    </div>
+  </div>
+
+  <!-- WIN SCREEN -->
+  <div id="winScreen" class="overlay hidden">
+    <div class="panel">
+      <div class="badge ok">রুট শেষ (Route Complete)</div>
+      <h2>🎉 মদিনা মার্কেট পৌঁছেছেন!</h2>
+      <div class="stats">
+        <div><span id="winMoney">৳0</span><label>মোট আয়</label></div>
+        <div><span id="winPass">0</span><label>যাত্রী</label></div>
+        <div><span id="winStops">0/8</span><label>স্টপ</label></div>
+      </div>
+      <button class="btn primary" onclick="restartGame()">↻ আবার খেলুন (Play Again)</button>
+    </div>
+  </div>
+
+  <!-- TOUCH / MOUSE CONTROLS -->
+  <div id="touchControls">
+    <button class="ctrl" id="btnBrake">🛑<small>ব্রেক</small></button>
+    <button class="ctrl" id="btnDoor">🚪<small>দরজা</small></button>
+    <button class="ctrl" id="btnHorn">🔊<small>হর্ন</small></button>
+    <button class="ctrl gas" id="btnGas">⏵<small>গ্যাস</small></button>
+  </div>
+</div>
+<script src="game.js"></script>
+</body>
+</html>
